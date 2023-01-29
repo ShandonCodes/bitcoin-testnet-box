@@ -31,6 +31,18 @@ sendfrom1:
 sendfrom2:
 	$(BITCOINCLI) $(B2) sendtoaddress $(ADDRESS) $(AMOUNT)
 
+wallet1:
+	$(BITCOINCLI) $(B1) createwallet wallet1
+
+wallet2:
+	$(BITCOINCLI) $(B2) createwallet wallet2
+
+loadwallet1:
+	$(BITCOINCLI) $(B1) loadwallet wallet1
+
+loadwallet2:
+	$(BITCOINCLI) $(B2) loadwallet wallet2
+
 address1:
 	$(BITCOINCLI) $(B1) getnewaddress $(ACCOUNT)
 
@@ -50,3 +62,6 @@ docker-build:
 
 docker-run:
 	docker run -ti bitcoin-testnet-box
+
+gen-17:
+	bitcoin-cli -datadir=1 -rpcconnect=127.0.0.1 -rpcport=19001 -rpcuser=admin1 -rpcpassword=123 generate 100
